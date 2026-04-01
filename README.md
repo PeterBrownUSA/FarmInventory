@@ -9,7 +9,7 @@ Permanent laser-engraved metal labels for fruit trees and plants.
 ## Quick Start
 
 1. **Read the full guide:** [`docs/PROJECT_GUIDE.md`](docs/PROJECT_GUIDE.md)
-2. **Labels are ready:** `output/labels_batch.csv` — import into xTool Creative Space
+2. **Labels are ready:** `output/labels_batch.csv` and `output/svg/` — import into xTool Creative Space
 3. Follow the **XCS Batch Engraving Workflow** below
 4. **Run a test card first** — see the test grid procedure in the full guide
 
@@ -17,7 +17,8 @@ Permanent laser-engraved metal labels for fruit trees and plants.
 
 1. Add rows to `data/my_trees.csv` (one row per physical plant)
 2. Run: `python3 data/generate_labels.py`
-3. New `output/labels_batch.csv` will be generated
+3. Run: `python3 data/generate_svgs.py`
+4. New `output/labels_batch.csv` and `output/svg/` files will be generated
 
 ## Equipment
 
@@ -37,7 +38,7 @@ Permanent laser-engraved metal labels for fruit trees and plants.
 | Use | Fresh eating, Cider |
 | Origin | Denmark, 1600s |
 | Year Planted | 2024 |
-| Footer | Planted by: PB & RS |
+| Footer | Planted by: Peter Brown & Robyn Seely |
 
 ---
 
@@ -68,7 +69,7 @@ This is the step-by-step process to go from `labels_batch.csv` to engraved cards
 │                                                          │
 │   Year Planted: _____                                    │
 │                                                          │
-│            Planted by: PB & RS                           │
+│            Planted by: Peter Brown & Robyn Seely           │
 │            (Small, centered — 2-2.5mm)                   │
 │                                                          │
 └──────────────────────────────────────────────────────────┘
@@ -175,11 +176,22 @@ FarmInventory/
 ├── data/
 │   ├── master_catalog.csv         ← 432 variety reference (botanical data)
 │   ├── my_trees.csv               ← Your inventory (1 row = 1 plant)
-│   ├── generate_labels.py         ← Joins inventory + catalog → labels
+│   ├── generate_labels.py         ← Joins inventory + catalog → labels CSV
+│   ├── generate_svgs.py           ← Generates individual SVG files per label
 │   ├── scrape_catalog.py          ← Refreshes catalog from Trees of Antiquity
 │   └── inventory_template.csv     ← Blank template for reference
 ├── output/
-│   └── labels_batch.csv           ← 93 labels ready for XCS
+│   ├── labels_batch.csv           ← 93 labels ready for XCS (CSV)
+│   └── svg/                       ← 93 individual SVG files (one per card)
 └── docs/
     └── PROJECT_GUIDE.md           ← Full documentation
 ```
+
+### SVG Workflow (Alternative to CSV Batch)
+
+If XCS does not support CSV batch import, use the individual SVG files:
+
+1. Open any SVG from `output/svg/` in XCS (e.g., `001_Chandler_Walnut.svg`)
+2. Each file is pre-sized to 86mm × 54mm — the exact card dimensions
+3. All text is centered with appropriate font sizes
+4. Set laser settings (see above), engrave, then open the next SVG

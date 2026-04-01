@@ -25,40 +25,88 @@ FOOTER = "Planted by: Peter Brown & Robyn Seely"
 # ── Manual overrides for varieties with incomplete catalog data ──
 # Keys are lowercase catalog names; values fill in missing fields only.
 OVERRIDES = {
+    # Cherries — Summerland Research Station, BC
     "lapins":                   {"Origin": "British Columbia, 1984", "Bloom_Period": "Midseason"},
     "stella":                   {"Origin": "British Columbia, 1968"},
     "van":                      {"Origin": "British Columbia, 1944"},
+    "black tartarian":          {"Origin": "Russia, 1794"},
     "black pearl":              {"Origin": "British Columbia, 2000s", "Fertility": "Self-fertile"},
+    "skeena":                   {"Origin": "British Columbia, 1996", "Bloom_Period": "Midseason"},
+    # Stone fruit
+    "frost":                    {"Origin": "California, 1960s", "Bloom_Period": "Late"},
+    "baby crawford":            {"Origin": "Ohio, 1870s", "Bloom_Period": "Midseason"},
+    "george iv":                {"Origin": "New York, 1820s", "Bloom_Period": "Midseason"},
+    "o'henry":                  {"Origin": "California, 1950s", "Bloom_Period": "Midseason"},
+    "rio oso gem":              {"Origin": "California, 1926", "Bloom_Period": "Midseason"},
+    "independence":             {"Origin": "California, 1960s", "Bloom_Period": "Midseason"},
+    "goldmine":                 {"Origin": "New Zealand, 1890s", "Bloom_Period": "Early"},
+    "snow queen":               {"Origin": "California, 1983", "Bloom_Period": "Early"},
+    "puget gold":               {"Origin": "Washington, 1980s"},
+    "blenheim":                 {"Origin": "England, 1815"},
+    "elephant heart":           {"Origin": "California, 1920s"},
+    "santa rosa":               {"Origin": "Santa Rosa, California, 1906"},
+    # Apples — catalog origins with standardized formatting
+    "christmas pink":           {"Origin": "Ettersburg, California, 1900s"},
+    "mountain rose":            {"Origin": "Oregon, 1950s"},
+    "pink parfait":             {"Origin": "California, 1900s"},
+    "pink pearl":               {"Origin": "California, 1944"},
+    "strawberry parfait":       {"Origin": "New Jersey, 1900s"},
+    "winekist apple":           {"Origin": "Dakotas, 1949"},
+    "rhode island greening":    {"Origin": "Rhode Island, 1650s"},
+    "dolgo crab":               {"Origin": "South Dakota, 1897"},
+    "jonathan":                 {"Origin": "New York, 1700s"},
+    "white pearmain":           {"Origin": "England, 1200s"},
+    "bramley seedling":         {"Origin": "England, 1809"},
+    "glockenapfel":             {"Origin": "Switzerland, 1500s"},
+    "cox orange pippin":        {"Origin": "England, 1830"},
+    "winterstein":              {"Origin": "California, 1898"},
+    "court pendu plat":         {"Origin": "France, 1613"},
+    "knobbed russet":           {"Origin": "England, 1819"},
+    "white transparent":        {"Origin": "Russia, 1850"},
+    "duchess of oldenburg":     {"Origin": "Russia, 1700"},
+    "belle de boskoop":         {"Origin": "Holland, 1856"},
+    "niedwetzkyana":            {"Origin": "Kyrgyzstan, 1800s"},
+    "ashmead's kernel apple":   {"Origin": "England, 1700s"},
+    "foxwhelp":                 {"Origin": "England, 1664"},
+    "hewes virginia crab":      {"Origin": "Virginia, 1817"},
+    "harrison":                 {"Origin": "New Jersey, 1817"},
+    "tremblett's bitter":       {"Origin": "England, 1800s"},
+    "redstreak":                {"Origin": "England, 1600s"},
+    "brown's cider":            {"Origin": "England, 1900s"},
+    # Walnuts
+    "chandler walnut":          {"Origin": "California, 1979"},
+    "hartley walnut":           {"Origin": "Napa County, California, 1892"},
+    "manregion english walnut": {"Origin": "Oregon, 1900s"},
+    # Berries
+    "marionberry":              {"Origin": "Oregon, 1956", "Bloom_Period": "Spring"},
+    "loganberry":               {"Origin": "Santa Cruz, California, 1881", "Bloom_Period": "Spring"},
+    "heritage red raspberries": {"Origin": "New York, 1969", "Bloom_Period": "Spring & fall"},
+    "fall gold raspberries":    {"Origin": "New Hampshire, 1967", "Bloom_Period": "Spring & fall"},
+    "chandler":                 {"Origin": "New Jersey, 1994", "Bloom_Period": "Midseason"},
+    "sunshine":                 {"Origin": "Michigan, 2006", "Bloom_Period": "Midseason"},
+    "jersey":                   {"Origin": "New Jersey, 1928", "Bloom_Period": "Midseason"},
+    # Grapes
+    "interlaken":               {"Origin": "New York, 1940s", "Bloom_Period": "Early"},
+    "concord":                  {"Origin": "Concord, Massachusetts, 1849", "Bloom_Period": "Midseason"},
+    "niagara":                  {"Origin": "Niagara County, New York, 1868", "Bloom_Period": "Midseason"},
+    # Pears
+    "white doyenne":            {"Origin": "Italy, 1550"},
+    "beurre hardy":             {"Origin": "France, 1820"},
+    # Other
     "black pakistan":            {"Origin": "Pakistan, ancient", "Bloom_Period": "Spring", "Harvest_Period": "Mid to late summer"},
-    "kashmir":                  {"Origin": "Kashmir region"},
+    "kashmir":                  {"Origin": "Kashmir, India"},
     "grenada":                  {"Origin": "California"},
     "goji":                     {"Bloom_Period": "Late spring", "Harvest_Period": "Late summer", "Fertility": "Self-fertile", "Use": "Fresh eating; Dried; Medicinal", "Origin": "China, ancient"},
     "peter's honey":            {"Origin": "Sicily, Italy"},
-    "frost":                    {"Bloom_Period": "Late"},
-    "baby crawford":            {"Bloom_Period": "Midseason"},
-    "independence":             {"Bloom_Period": "Midseason"},
-    "goldmine":                 {"Bloom_Period": "Early"},
-    "snow queen":               {"Bloom_Period": "Early"},
-    "george iv":                {"Bloom_Period": "Midseason"},
-    "marionberry":              {"Bloom_Period": "Spring", "Origin": "Oregon, 1956"},
-    "loganberry":               {"Bloom_Period": "Spring", "Origin": "California, 1881"},
-    "heritage red raspberries": {"Bloom_Period": "Spring & fall", "Origin": "New York, 1969"},
-    "fall gold raspberries":    {"Bloom_Period": "Spring & fall", "Origin": "New Hampshire, 1967"},
-    "chandler":                 {"Origin": "Michigan, 1994", "Bloom_Period": "Midseason"},
-    "sunshine":                 {"Origin": "Michigan, 2006", "Bloom_Period": "Midseason"},
-    "jersey":                   {"Origin": "New Jersey, 1928", "Bloom_Period": "Midseason"},
-    # 2023 purchase overrides
-    "skeena":                   {"Origin": "British Columbia, 1996", "Bloom_Period": "Midseason"},
+    "smyrna":                   {"Origin": "Turkey, 1887"},
+    "honan red":                {"Origin": "China, 1800s"},
     "black mulberry bush":      {"Origin": "Western Asia, ancient", "Bloom_Period": "Spring", "Harvest_Period": "Midsummer"},
     "crandall black currant":   {"Origin": "South Dakota, 1900s", "Bloom_Period": "Early spring", "Harvest_Period": "Midsummer"},
     "issai hardy kiwi":         {"Origin": "Japan", "Bloom_Period": "Late spring"},
-    "interlaken":               {"Bloom_Period": "Early"},
-    "rio oso gem":              {"Bloom_Period": "Midseason"},
     "jenny fuzzy kiwi":         {"Origin": "New Zealand", "Bloom_Period": "Late spring"},
-    "o'henry":                  {"Bloom_Period": "Midseason"},
     "eversweet":                {"Origin": "California"},
-    "concord":                  {"Bloom_Period": "Midseason"},
-    "niagara":                  {"Bloom_Period": "Midseason"},
+    "shanxi":                   {"Origin": "China, 1800s"},
+    "sugarcane":                {"Origin": "China, 1800s"},
 }
 
 # ── Display-name overrides (catalog name -> prettier label name) ──
@@ -204,11 +252,11 @@ def generate():
                 "Footer": FOOTER,
             }
 
-        # Apply overrides for missing data
+        # Apply overrides — always replace Origin, fill missing for others
         override_key = cat_name.lower().strip()
         if override_key in OVERRIDES:
             for field, val in OVERRIDES[override_key].items():
-                if not label.get(field):
+                if field == "Origin" or not label.get(field):
                     label[field] = val
 
         labels.append(label)
