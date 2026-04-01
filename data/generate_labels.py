@@ -1,29 +1,70 @@
 #!/usr/bin/env python3
 """
-Generate labels_batch.csv by joining:
-  - data/my_trees.csv        (inventory — one row per physical plant)
-  - data/master_catalog.csv  (reference — botanical data per variety)
+generate_labels.py — Label CSV Generator
+=========================================
+
+Joins two data sources to produce a single CSV where each row is one
+physical label to be laser-engraved:
+
+  INPUT:
+    1. data/my_trees.csv        — Personal inventory (one row per physical plant)
+       Columns: ID, Catalog_Name, Year_Planted, Source, Location, Notes
+    2. data/master_catalog.csv  — Reference database (botanical data per variety)
+       Columns: Name, Type, Bloom_Period, Harvest_Period, Fertility, Use, Origin, Source_URL
+
+  OUTPUT:
+    output/labels_batch.csv     — One row per label, 9 fields, ready for XCS or SVG generation
+       Columns: Name, Type, Bloom_Period, Harvest_Period, Fertility, Use, Origin, Year_Planted, Footer
+
+  WORKFLOW:
+    1. Load the master catalog into a lookup dictionary (keyed by lowercase name)
+    2. Read each row from my_trees.csv (each row = one physical plant)
+    3. Match each plant to its catalog entry (exact match, then partial/substring)
+    4. Build a label dict with catalog data + year planted + footer
+    5. Apply OVERRIDES to fix/enrich missing or inaccurate catalog data
+    6. Write all labels to the output CSV
+    7. Print a summary report with completeness check
 
 Usage:
     python3 data/generate_labels.py
 
-Output:
-    output/labels_batch.csv  (one row per label, ready for XCS batch import)
+Dependencies:
+    Python 3.6+ (stdlib only — csv, os, sys)
 """
 
 import csv
 import os
 import sys
 
+# ── Path Configuration ──
+# All paths are relative to the project root (one level above this script).
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG_PATH = os.path.join(BASE_DIR, "data", "master_catalog.csv")
 INVENTORY_PATH = os.path.join(BASE_DIR, "data", "my_trees.csv")
 OUTPUT_PATH = os.path.join(BASE_DIR, "output", "labels_batch.csv")
 
+# ── Footer Text ──
+# Appears on every label. Change this to personalize for your own farm.
 FOOTER = "Planted by: Peter Brown & Robyn Seely"
 
-# ── Manual overrides for varieties with incomplete catalog data ──
-# Keys are lowercase catalog names; values fill in missing fields only.
+# ══════════════════════════════════════════════════════════════════════
+# OVERRIDES — Manual corrections and enrichments for catalog data
+# ══════════════════════════════════════════════════════════════════════
+#
+# The master catalog (scraped from Trees of Antiquity) sometimes has
+# incomplete or inconsistently formatted data. This dictionary provides
+# corrections that are applied AFTER the catalog lookup.
+#
+# KEY:   Lowercase version of the Catalog_Name from my_trees.csv
+# VALUE: Dict of field names -> corrected values
+#
+# BEHAVIOR:
+#   - "Origin" field: ALWAYS replaced by the override (even if catalog has a value)
+#   - All other fields: Only filled in if the catalog value is empty/missing
+#
+# This ensures origins are consistently formatted as "Location, Year"
+# while preserving valid catalog data for other fields.
+# ══════════════════════════════════════════════════════════════════════
 OVERRIDES = {
     # Cherries — Summerland Research Station, BC
     "lapins":                   {"Origin": "British Columbia, 1984", "Bloom_Period": "Midseason"},
@@ -109,7 +150,19 @@ OVERRIDES = {
     "sugarcane":                {"Origin": "China, 1800s"},
 }
 
-# ── Display-name overrides (catalog name -> prettier label name) ──
+# ══════════════════════════════════════════════════════════════════════
+# DISPLAY_NAMES — Prettify variety names for the label
+# ══════════════════════════════════════════════════════════════════════
+#
+# The catalog often stores short names (e.g., "Lapins") that don't
+# include the fruit type. These overrides map the short catalog name
+# to the full display name that appears on the engraved label.
+#
+# KEY:   Lowercase Catalog_Name from my_trees.csv
+# VALUE: Full display name for the label (e.g., "Lapins Cherry")
+#
+# If a variety is NOT in this dict, the raw Catalog_Name is used as-is.
+# ══════════════════════════════════════════════════════════════════════
 DISPLAY_NAMES = {
     "lapins":                   "Lapins Cherry",
     "black tartarian":          "Black Tartarian Cherry",
@@ -182,7 +235,13 @@ DISPLAY_NAMES = {
     "beurre hardy":             "Beurre Hardy Pear",
 }
 
-# Type display overrides (catalog type -> label type)
+# ══════════════════════════════════════════════════════════════════════
+# TYPE_MAP — Normalize fruit type names for label consistency
+# ══════════════════════════════════════════════════════════════════════
+#
+# Some catalog categories use compound names (e.g., "Elderberry/Feijoa")
+# or generic names (e.g., "Nut Tree"). This maps them to cleaner labels.
+# ══════════════════════════════════════════════════════════════════════
 TYPE_MAP = {
     "Elderberry/Feijoa": "Feijoa",
     "Nut Tree": "Walnut",
@@ -190,7 +249,12 @@ TYPE_MAP = {
 
 
 def load_catalog():
-    """Load master_catalog.csv into a dict keyed by lowercase name."""
+    """
+    Load master_catalog.csv into a dictionary keyed by lowercase variety name.
+
+    Returns:
+        dict: {lowercase_name: {Name, Type, Bloom_Period, ...}}
+    """
     catalog = {}
     with open(CATALOG_PATH, encoding="utf-8") as f:
         for row in csv.DictReader(f):
@@ -199,10 +263,28 @@ def load_catalog():
 
 
 def lookup(catalog, name):
-    """Find a variety in the catalog by exact then partial match."""
+    """
+    Find a variety in the catalog using flexible name matching.
+
+    Matching strategy (in order):
+      1. Exact match on lowercase name
+      2. Partial/substring match (either direction)
+
+    This handles cases where my_trees.csv uses a short name like "Lapins"
+    but the catalog stores "Lapins Cherry", or vice versa.
+
+    Args:
+        catalog: dict from load_catalog()
+        name: the Catalog_Name string from my_trees.csv
+
+    Returns:
+        dict: The matching catalog row, or None if no match found
+    """
     key = name.lower().strip()
+    # Strategy 1: Exact match
     if key in catalog:
         return catalog[key]
+    # Strategy 2: Partial match — check if either name contains the other
     for k, v in catalog.items():
         if key in k or k in key:
             return v
@@ -210,23 +292,37 @@ def lookup(catalog, name):
 
 
 def generate():
+    """
+    Main generation pipeline:
+      1. Load catalog reference data
+      2. Read personal inventory
+      3. For each plant, look up catalog data and build a label
+      4. Apply overrides to fix/enrich data
+      5. Write output CSV
+      6. Print summary report with completeness check
+    """
+    # ── Step 1: Load the reference catalog ──
     catalog = load_catalog()
 
-    # Read inventory
+    # ── Step 2: Read personal inventory (one row = one physical plant) ──
     inventory = []
     with open(INVENTORY_PATH, encoding="utf-8") as f:
         for row in csv.DictReader(f):
             inventory.append(row)
 
+    # ── Step 3: Build labels by joining inventory with catalog ──
     labels = []
     unmatched = []
 
     for tree in inventory:
         cat_name = tree["Catalog_Name"].strip()
         year = tree["Year_Planted"].strip()
+
+        # Look up this variety in the master catalog
         match = lookup(catalog, cat_name)
 
         if match:
+            # Catalog match found — pull all botanical fields from catalog
             label = {
                 "Name": DISPLAY_NAMES.get(cat_name.lower(), cat_name),
                 "Type": TYPE_MAP.get(match.get("Type", ""), match.get("Type", "")),
@@ -239,6 +335,8 @@ def generate():
                 "Footer": FOOTER,
             }
         else:
+            # No catalog match — create label with empty botanical fields
+            # These will be filled by OVERRIDES if available
             unmatched.append(cat_name)
             label = {
                 "Name": DISPLAY_NAMES.get(cat_name.lower(), cat_name),
@@ -252,7 +350,9 @@ def generate():
                 "Footer": FOOTER,
             }
 
-        # Apply overrides — always replace Origin, fill missing for others
+        # ── Step 4: Apply overrides to fix/enrich catalog data ──
+        # Origin is ALWAYS replaced (catalog origins are often poorly formatted).
+        # All other fields are only filled if the catalog value was empty.
         override_key = cat_name.lower().strip()
         if override_key in OVERRIDES:
             for field, val in OVERRIDES[override_key].items():
@@ -261,7 +361,7 @@ def generate():
 
         labels.append(label)
 
-    # Write output
+    # ── Step 5: Write the output CSV ──
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     out_headers = ["Name", "Type", "Bloom_Period", "Harvest_Period",
                    "Fertility", "Use", "Origin", "Year_Planted", "Footer"]
@@ -270,17 +370,21 @@ def generate():
         writer.writeheader()
         writer.writerows(labels)
 
-    # ── Report ──
+    # ══════════════════════════════════════════════════════════════════
+    # Step 6: Summary Report
+    # ══════════════════════════════════════════════════════════════════
     print("Generated %d labels -> %s" % (len(labels), OUTPUT_PATH))
     print("  Source: %d rows from %s" % (len(inventory), INVENTORY_PATH))
     print("  Catalog: %d varieties in %s" % (len(catalog), CATALOG_PATH))
+
+    # Warn about any inventory items that couldn't be matched to the catalog
     if unmatched:
         print("\n  WARNING - %d unmatched (no catalog entry):" % len(unmatched))
         for u in unmatched:
             print("    - %s" % u)
     print()
 
-    # Summary table
+    # Detailed label table for visual verification
     fmt = "%-4s %-30s %-12s %-14s %-14s %-24s %s"
     print(fmt % ("ID", "Name", "Type", "Bloom", "Harvest", "Fertility", "Origin"))
     print("-" * 130)
@@ -295,7 +399,7 @@ def generate():
             (label["Origin"] or "?")[:30],
         ))
 
-    # Type counts
+    # Label count by fruit type
     type_counts = {}
     for l in labels:
         t = l["Type"] or "Unknown"
@@ -305,10 +409,11 @@ def generate():
         print("  %-15s %3d" % (t, type_counts[t]))
     print("  %-15s %3d" % ("TOTAL", len(labels)))
 
-    # Data completeness check
+    # Data completeness check — flag any labels with empty required fields
+    # This catches varieties missing bloom period, origin, etc.
     missing = []
     for i, l in enumerate(labels):
-        for f in out_headers[:-1]:  # skip Footer
+        for f in out_headers[:-1]:  # Skip Footer (always populated)
             if not l.get(f):
                 missing.append("  Row %d (%s): %s" % (i + 1, l["Name"], f))
     if missing:

@@ -3,7 +3,8 @@
      width="86mm" height="54mm"
      viewBox="0 0 86 54">
 
-  <!-- Card boundary (not engraved — for alignment only) -->
+  <!-- Card boundary — light gray outline for alignment reference only.
+       This rectangle is NOT engraved (stroke is too thin and gray). -->
   <rect x="0" y="0" width="86" height="54"
         fill="none" stroke="#cccccc" stroke-width="0.1" />
 
