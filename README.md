@@ -56,32 +56,34 @@ This is the step-by-step process to go from `labels_batch.csv` to engraved cards
 ```
 ┌──────────────────────────────────────────────────────────┐
 │                                                          │
-│            << VARIETY NAME >>                            │
-│            (Large, bold, centered — 5-6mm)               │
+│              << VARIETY NAME >>                           │
+│                  (Type)                                   │
 │                                                          │
-│   Type: _______________    Origin: __________________    │
+│ ──────────────────────────────────────────────────────── │
 │                                                          │
-│   Bloom: ______________    Harvest: _________________    │
+│               Bloom: __________                          │
+│              Harvest: __________                         │
+│            Fertility: __________                         │
+│                 Use: __________                          │
+│              Origin: __________                          │
 │                                                          │
-│   Fertility: ________________________________________    │
+│ ──────────────────────────────────────────────────────── │
 │                                                          │
-│   Use: ______________________________________________    │
-│                                                          │
-│   Year Planted: _____                                    │
-│                                                          │
-│            Planted by: Peter Brown & Robyn Seely           │
-│            (Small, centered — 2-2.5mm)                   │
+│              Planted: 2026                               │
+│    Planted by: Peter Brown & Robyn Seely                 │
 │                                                          │
 └──────────────────────────────────────────────────────────┘
 ```
 
-**Typography recommendations:**
+**Typography:**
 
-| Element | Font Size | Alignment |
-|---------|-----------|-----------|
-| Variety Name | 5–6mm (~14-16pt) Bold | Center |
-| Field labels + values | 2.5–3mm (~7-8pt) | Left |
-| Footer | 2–2.5mm (~6-7pt) Italic | Center |
+| Element | Font Size | Style | Alignment |
+|---------|-----------|-------|-----------|
+| Variety Name | 4.5mm (~13pt) | Bold | Center |
+| Type | 3.2mm (~9pt) | Italic | Center |
+| Detail fields | 2.8mm (~8pt) | Regular | Center |
+| Planted year | 2.8mm (~8pt) | Bold | Center |
+| Footer | 2.5mm (~7pt) | Regular | Center |
 
 ### Step 2: Enable Batch Processing & Import CSV
 
