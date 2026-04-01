@@ -197,3 +197,122 @@ If XCS does not support CSV batch import, use the individual SVG files:
 2. Each file is pre-sized to 86mm × 54mm — the exact card dimensions
 3. All text is centered with appropriate font sizes
 4. Set laser settings (see above), engrave, then open the next SVG
+
+---
+
+## Using This Codebase for Your Own Inventory
+
+You can fork or clone this repo and adapt it for your own farm or garden. Here's how:
+
+### Prerequisites
+
+- **Python 3.6+** (no external packages required — stdlib only)
+- **xTool Creative Space (XCS)** for engraving
+- **xTool M1** (or compatible laser engraver)
+- **Black anodized aluminum business cards** (86mm × 54mm)
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/PeterBrownUSA/FarmInventory.git
+cd FarmInventory
+```
+
+### Step 2: Customize the Footer
+
+Edit `data/generate_labels.py` and change the `FOOTER` constant (line 23):
+
+```python
+FOOTER = "Planted by: Your Name Here"
+```
+
+### Step 3: Refresh the Catalog (Optional)
+
+The included `data/master_catalog.csv` contains 432 varieties from [Trees of Antiquity](https://www.treesofantiquity.com). To refresh it:
+
+```bash
+python3 data/scrape_catalog.py
+```
+
+This re-scrapes all collections via the Shopify JSON API and overwrites `data/master_catalog.csv`. No API key is required.
+
+If your trees come from a different nursery, you can replace `master_catalog.csv` entirely. Just keep the same column headers:
+
+```
+Name,Type,Bloom_Period,Harvest_Period,Fertility,Use,Origin,Source_URL
+```
+
+### Step 4: Build Your Inventory
+
+Edit `data/my_trees.csv` — add one row per physical plant you own:
+
+```csv
+ID,Catalog_Name,Year_Planted,Source,Location,Notes
+1,Gravenstein,2024,Trees of Antiquity,Orchard Row A,
+2,Gravenstein,2025,Trees of Antiquity,Orchard Row B,Second tree
+3,Bartlett Pear,2024,Local nursery,,Gift from neighbor
+```
+
+| Column | Description |
+|--------|-------------|
+| `ID` | Unique number (sequential) |
+| `Catalog_Name` | Must match a `Name` in `master_catalog.csv` (partial match supported) |
+| `Year_Planted` | Year the tree went in the ground |
+| `Source` | Where you purchased it |
+| `Location` | Optional — where on your property |
+| `Notes` | Optional — any notes |
+
+> **Tip:** You can have multiple rows for the same variety (e.g., two Gravenstein trees planted in different years). Each row produces its own label.
+
+### Step 5: Add Custom Varieties
+
+If you own trees **not** in the catalog, you have two options:
+
+**Option A:** Add the variety directly to `data/master_catalog.csv`:
+```csv
+My Local Apple,Apple,Midseason,Late,Self-fertile,Fresh eating,Oregon 1990s,
+```
+
+**Option B:** Add an override in `data/generate_labels.py` in the `OVERRIDES` dict:
+```python
+OVERRIDES = {
+    "my local apple": {"Origin": "Oregon, 1990s", "Bloom_Period": "Midseason"},
+    ...
+}
+```
+
+Overrides always take precedence for the `Origin` field and fill in any missing fields from the catalog.
+
+### Step 6: Generate Labels
+
+```bash
+# Generate the CSV (used for XCS batch import)
+python3 data/generate_labels.py
+
+# Generate individual SVG files (one per card)
+python3 data/generate_svgs.py
+```
+
+Output:
+- `output/labels_batch.csv` — all labels in CSV format
+- `output/svg/` — one SVG file per label (86mm × 54mm each)
+
+### Step 7: Engrave
+
+Open the SVG files in xTool Creative Space and engrave using the laser settings documented above. See the **XCS Batch Engraving Workflow** section for full details.
+
+### Customizing the SVG Layout
+
+To adjust fonts, spacing, or layout, edit `data/generate_svgs.py`. Key variables at the top of the file:
+
+```python
+CARD_W = 86        # Card width in mm
+CARD_H = 54        # Card height in mm
+MARGIN = 3         # Margin from edges in mm
+FONT_NAME = 4.5    # Variety name font size (mm)
+FONT_TYPE = 3.2    # Type line font size (mm)
+FONT_DETAIL = 2.8  # Detail fields font size (mm)
+FONT_FOOTER = 2.5  # Footer font size (mm)
+```
+
+The `LAYOUT` dict controls vertical positioning (Y coordinates in mm from top). Adjust these to rebalance spacing between fields.
