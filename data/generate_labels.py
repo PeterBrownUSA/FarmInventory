@@ -20,7 +20,7 @@ CATALOG_PATH = os.path.join(BASE_DIR, "data", "master_catalog.csv")
 INVENTORY_PATH = os.path.join(BASE_DIR, "data", "my_trees.csv")
 OUTPUT_PATH = os.path.join(BASE_DIR, "output", "labels_batch.csv")
 
-FOOTER = "Planted by: Peter Brown & Robyn Seely"
+FOOTER = "Planted by: PB & RS"
 
 # ── Manual overrides for varieties with incomplete catalog data ──
 # Keys are lowercase catalog names; values fill in missing fields only.

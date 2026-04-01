@@ -87,7 +87,7 @@ get their own row and their own label.
 | **Use** | Culinary purpose | Fresh eating, Cider, Cooking |
 | **Origin** | Location and year of origin | Germany, 1600s |
 | **Year Planted** | When you planted it | 2024 |
-| **Footer** | Fixed text (same on all labels) | Planted by: Peter Brown & Robyn Seely |
+| **Footer** | Fixed text (same on all labels) | Planted by: PB & RS |
 
 ### How to Add New Trees
 
