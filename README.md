@@ -316,3 +316,28 @@ FONT_FOOTER = 2.5  # Footer font size (mm)
 ```
 
 The `LAYOUT` dict controls vertical positioning (Y coordinates in mm from top). Adjust these to rebalance spacing between fields.
+
+### 💡 Tip: Automate with GitHub Copilot CLI
+
+If you're using [GitHub Copilot CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cli), you can skip the manual inventory entry entirely. Simply paste your nursery order receipt (email confirmation, invoice text, or screenshot text) into a Copilot CLI session and ask it to:
+
+1. **Parse the receipt** — extract variety names, quantities, and purchase year
+2. **Match against the catalog** — look up each variety in `master_catalog.csv` and resolve name differences
+3. **Expand bundles** — identify collection/bundle products and break them into individual varieties
+4. **Research missing data** — for varieties not in the catalog, look up botanical details (bloom period, origin, fertility, etc.)
+5. **Populate `my_trees.csv`** — append new rows with correct IDs, catalog names, and planting year
+6. **Regenerate labels** — run both generation scripts automatically
+
+Example prompt:
+```
+Here are the trees I purchased in 2025 and planted in 2026:
+
+  Bramley Seedling × 1  $56.95
+  Lapins Cherry × 2     $52.95/ea
+  Orchard Starter Bundle × 1  $235.95
+
+Please add these to my_trees.csv, match them against the catalog,
+expand any bundles, and regenerate the labels.
+```
+
+This is how the original inventory for this project was built — three years of purchase receipts were processed in a single session.
