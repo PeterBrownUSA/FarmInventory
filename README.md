@@ -59,8 +59,8 @@ This is the step-by-step process to go from `labels_batch.csv` to engraved cards
 ```
 ┌──────────────────────────────────────────────────────────┐
 │                                                          │
-│              << VARIETY NAME >>                           │
-│                  (Type)                                   │
+│              << VARIETY NAME >>                          │
+│                  (Type)                                  │
 │                                                          │
 │ ──────────────────────────────────────────────────────── │
 │                                                          │
