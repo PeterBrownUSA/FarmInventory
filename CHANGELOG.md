@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+
+- Peach tree memorial with the January 2025-April 2026 weather review and
+  individual obituaries for all five peach inventory records
+
+### Changed
+
+- Linked each peach tree's inventory note to its memorial entry
+
 ## [1.0.0] - 2026-04-01
 
 ### Added

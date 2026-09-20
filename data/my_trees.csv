@@ -5,7 +5,7 @@ ID,Catalog_Name,Year_Planted,Source,Location,Notes
 4,Black Tartarian,2026,Trees of Antiquity,,
 5,Black Tartarian,2026,Trees of Antiquity,,
 6,Puget Gold,2026,Trees of Antiquity,,
-7,Frost,2026,Trees of Antiquity,,
+7,Frost,2026,Trees of Antiquity,,Loss recorded 2026-09-20; cause undetermined; see docs/PEACH_MEMORIAL.md#frost-peach-inventory-007
 8,Goji,2026,Trees of Antiquity,,
 9,Black Pakistan,2026,Trees of Antiquity,,
 10,Bramley Seedling,2026,Trees of Antiquity,,
@@ -33,7 +33,7 @@ ID,Catalog_Name,Year_Planted,Source,Location,Notes
 32,Dolgo Crab,2026,Trees of Antiquity,,
 33,Kakariki™ Feijoa,2026,Trees of Antiquity,,
 34,Takaka™ Feijoa,2026,Trees of Antiquity,,
-35,Baby Crawford,2026,Trees of Antiquity,,
+35,Baby Crawford,2026,Trees of Antiquity,,Loss recorded 2026-09-20; cause undetermined; see docs/PEACH_MEMORIAL.md#baby-crawford-peach-inventory-035
 36,Sunshine,2026,Trees of Antiquity,,
 37,Sunshine,2026,Trees of Antiquity,,
 38,Jersey,2026,Trees of Antiquity,,
@@ -45,7 +45,7 @@ ID,Catalog_Name,Year_Planted,Source,Location,Notes
 44,Goldmine,2026,Trees of Antiquity,,
 45,Snow Queen,2026,Trees of Antiquity,,
 46,Peter's Honey,2026,Trees of Antiquity,,
-47,George IV,2026,Trees of Antiquity,,
+47,George IV,2026,Trees of Antiquity,,Loss recorded 2026-09-20; cause undetermined; see docs/PEACH_MEMORIAL.md#george-iv-peach-inventory-047
 48,Christmas Pink,2026,Trees of Antiquity,,Pink & Red Fleshed Collective bundle
 49,Mountain Rose,2026,Trees of Antiquity,,Pink & Red Fleshed Collective bundle
 50,Pink Parfait,2026,Trees of Antiquity,,Pink & Red Fleshed Collective bundle
@@ -69,7 +69,7 @@ ID,Catalog_Name,Year_Planted,Source,Location,Notes
 68,Jonathan,2024,Trees of Antiquity,,Orchard Starter Bundle
 69,Blenheim,2024,Trees of Antiquity,,Orchard Starter Bundle
 70,Santa Rosa,2024,Trees of Antiquity,,Orchard Starter Bundle
-71,Rio Oso Gem,2024,Trees of Antiquity,,Orchard Starter Bundle
+71,Rio Oso Gem,2024,Trees of Antiquity,,"Orchard Starter Bundle; loss recorded 2026-09-20; cause undetermined; see docs/PEACH_MEMORIAL.md#rio-oso-gem-peach-inventory-071"
 72,White Pearmain,2024,Trees of Antiquity,,Orchard Starter Bundle
 73,Ashmead's Kernel Apple,2025,Trees of Antiquity,,Cider Tree Blend bundle
 74,Foxwhelp,2025,Trees of Antiquity,,Cider Tree Blend bundle
@@ -78,7 +78,7 @@ ID,Catalog_Name,Year_Planted,Source,Location,Notes
 77,Tremblett's Bitter,2025,Trees of Antiquity,,Cider Tree Blend bundle
 78,Redstreak,2025,Trees of Antiquity,,
 79,White Pearmain,2025,Trees of Antiquity,,
-80,O'Henry,2025,Trees of Antiquity,,
+80,O'Henry,2025,Trees of Antiquity,,Loss recorded 2026-09-20; cause undetermined; see docs/PEACH_MEMORIAL.md#ohenry-peach-inventory-080
 81,Brown's Cider,2025,Trees of Antiquity,,
 82,Honan Red,2025,Trees of Antiquity,,
 83,Heritage Red Raspberries,2025,Trees of Antiquity,,
