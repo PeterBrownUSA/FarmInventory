@@ -8,6 +8,8 @@ using an **xTool M1** laser engraver.
 
 **Primary Data Source:** [Trees of Antiquity](https://www.treesofantiquity.com/collections)
 
+**Farm Records:** [Peach Tree Memorial and 2025-2026 Weather Review](PEACH_MEMORIAL.md)
+
 ---
 
 ## Project Phases

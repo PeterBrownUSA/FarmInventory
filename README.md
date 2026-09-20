@@ -16,6 +16,12 @@ Permanent laser-engraved metal labels for fruit trees and plants.
 3. Follow the **XCS Batch Engraving Workflow** below
 4. **Run a test card first** — see the test grid procedure in the full guide
 
+## Farm Records
+
+- [Peach Tree Memorial and 2025-2026 Weather Review](docs/PEACH_MEMORIAL.md) -
+  evidence summary and individual obituaries for the five peach-tree losses
+  recorded in 2026
+
 ## To Add Future Trees
 
 1. Add rows to `data/my_trees.csv` (one row per physical plant)
@@ -189,7 +195,8 @@ FarmInventory/
 │   ├── labels_batch.csv           ← 93 labels ready for XCS (CSV)
 │   └── svg/                       ← 93 individual SVG files (one per card)
 └── docs/
-    └── PROJECT_GUIDE.md           ← Full documentation
+    ├── PROJECT_GUIDE.md              ← Full documentation
+    └── PEACH_MEMORIAL.md             ← Weather review and peach obituaries
 ```
 
 ### SVG Workflow (Alternative to CSV Batch)
