@@ -7,7 +7,7 @@ Permanent laser-engraved metal labels for fruit trees and plants.
 
 ## Status: ✅ Labels Ready to Engrave
 
-**101 labels** generated across 3 planting years (2024–2026).
+**114 labels** generated across 4 planting years (2024–2027).
 
 ## Quick Start
 
@@ -129,7 +129,7 @@ This is the step-by-step process to go from `labels_batch.csv` to engraved cards
 
 ### Step 4: Preview & Verify
 
-1. XCS will show a **preview of each label** (101 total)
+1. XCS will show a **preview of each label** (114 total)
 2. Use the **navigation arrows** to scroll through all labels
 3. Check that:
    - Text fits within the card boundaries (no clipping)
@@ -158,7 +158,7 @@ Set the **engraving parameters** for all text elements:
 | Lines per cm | 300 LPI |
 
 > ⚠️ **Run a test card first!** Engrave one label on a spare card to verify
-> settings produce a bright white mark before committing to all 101 cards.
+> settings produce a bright white mark before committing to all 114 cards.
 
 ### Step 6: Engrave
 
@@ -192,8 +192,8 @@ FarmInventory/
 │   ├── scrape_catalog.py          ← Refreshes catalog from Trees of Antiquity
 │   └── inventory_template.csv     ← Blank template for reference
 ├── output/
-│   ├── labels_batch.csv           ← 101 labels ready for XCS (CSV)
-│   └── svg/                       ← 101 individual SVG files (one per card)
+│   ├── labels_batch.csv           ← 114 labels ready for XCS (CSV)
+│   └── svg/                       ← 114 individual SVG files (one per card)
 └── docs/
     ├── PROJECT_GUIDE.md              ← Full documentation
     └── PEACH_MEMORIAL.md             ← Weather review and peach obituaries
