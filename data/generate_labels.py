@@ -73,6 +73,8 @@ OVERRIDES = {
     "black tartarian":          {"Origin": "Russia, 1794"},
     "black pearl":              {"Origin": "British Columbia, 2000s", "Fertility": "Self-fertile"},
     "skeena":                   {"Origin": "British Columbia, 1996", "Bloom_Period": "Midseason"},
+    "rainier":                  {"Origin": "Washington, 1952"},
+    "bing":                     {"Origin": "Oregon, 1875"},
     # Stone fruit
     "frost":                    {"Origin": "California, 1960s", "Bloom_Period": "Late"},
     "baby crawford":            {"Origin": "Ohio, 1870s", "Bloom_Period": "Midseason"},
@@ -201,6 +203,8 @@ DISPLAY_NAMES = {
     "chandler":                 "Chandler Blueberry",
     # 2023 purchase additions
     "skeena":                   "Skeena Cherry",
+    "rainier":                  "Rainier Cherry",
+    "bing":                     "Bing Cherry",
     "knobbed russet":           "Knobbed Russet Apple",
     "niedwetzkyana":            "Niedwetzkyana Apple",
     "white transparent":        "White Transparent Apple",
