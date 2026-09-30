@@ -182,6 +182,31 @@ the tree as more than a missing inventory row: it was a deliberate planting
 with a season and harvest in mind. Its exact date and cause of death remain
 unknown.
 
+## Additional losses recorded September 29, 2026
+
+A photo of the saved nursery tags, marked "Plant 2025 → 2026 RIP", shows eight
+trees lost during the 2025-2026 period. Frost (007) and O'Henry (080) are
+already recorded above. The other six were not in the inventory and have been
+added as 2025 plantings:
+
+| Inventory | Variety | Nursery | Recorded status |
+|---|---|---|---|
+| 096 | Suncrest Peach | Trees of Antiquity | Loss recorded September 29, 2026 |
+| 097 | J.H. Hale Peach | Trees of Antiquity | Loss recorded September 29, 2026 |
+| 098 | Early Elberta Peach (semi-dwarf) | Haworth Nursery | Loss recorded September 29, 2026 |
+| 099 | Canadian Harmony Peach (semi-dwarf) | Haworth Nursery | Loss recorded September 29, 2026 |
+| 100 | Red Gold Nectarine (semi-dwarf) | Haworth Nursery | Loss recorded September 29, 2026 |
+| 101 | Kieffer Pear | DeGroot | Loss recorded September 29, 2026 |
+
+These losses span three nurseries and include a nectarine and a pear, so
+nursery stock alone is an unlikely explanation. They fit the site and weather
+questions raised above.
+
+**Pending verification:** Baby Crawford (035), George IV (047) and Rio Oso Gem
+(071) are recorded above as losses, but their tags are not in the photo. They
+will be checked in the orchard on September 30, 2026, and this record should
+be corrected if any are alive.
+
 ## References
 
 - [`data/my_trees.csv`](../data/my_trees.csv) - individual inventory records
